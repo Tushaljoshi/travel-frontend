@@ -250,16 +250,14 @@
                     body: formData
                 });
 
-        if (response.ok) {
-            alert("✅ Message sent successfully!");
-            form.reset();
-        } else {
-            alert("❌ Failed to send message. Try again.");
-        }
+                if (response.ok) {
+                    alert("✅ Message sent successfully!");
+                    form.reset();
+                }
             } catch (err) {
-            alert("⚠️ Something went wrong. Try again.");
-            console.error(err);
-        }
+                alert("⚠️ Something went wrong. Try again.");
+                console.error(err);
+            }
         });
     </script>
     <script>
