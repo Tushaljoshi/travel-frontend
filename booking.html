@@ -1,0 +1,15 @@
+<form method="POST" action="http://127.0.0.1:5000/api/book">
+  <label for="checkin">Check-in Date</label>
+  <input type="date" id="checkin" name="checkin" required />
+  <label for="checkout">Check-out Date</label>
+  <input type="date" id="checkout" name="checkout" required />
+  <label for="guests">Guests</label>
+  <select id="guests" name="guests" required>
+    <option value="1">1 Guest</option>
+    <option value="2" selected>2 Guests</option>
+    <option value="3">3 Guests</option>
+    <option value="4">4 Guests</option>
+    <option value="5">5+ Guests</option>
+  </select>
+  <button type="submit">Check Availability</button>
+</form>

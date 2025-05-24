@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hotels - Travelo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .hotels-hero {
+            background: url('https://images.unsplash.com/photo-1501117716987-c8fdb4e43b94?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 0 0 10px rgba(0,0,0,0.7);
+        }
+        .hotels-hero h2 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        .section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section h3 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #333;
+        }
+        .hotels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .hotel-card {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            transition: transform 0.3s ease;
+        }
+        .hotel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .hotel-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .hotel-info {
+            padding: 15px;
+        }
+        .hotel-info h4 {
+            margin: 0 0 8px;
+            font-size: 1.3rem;
+            color: #222;
+        }
+        .hotel-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .hotel-info .price {
+            font-weight: 700;
+            color: #008080;
+        }
+        /* Booking form */
+        .booking-form {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 40px auto 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .booking-form h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .booking-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .booking-form input, .booking-form select {
+            width: 100%;
+            padding: 8px 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .booking-form button {
+            background: #008080;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 0.3s ease;
+        }
+        .booking-form button:hover {
+            background: #005f5f;
+        }
+        .services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30px;
+}
+.service-box {
+    flex: 1 1 200px;
+    max-width: 220px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.service-box:hover {
+    transform: translateY(-5px);
+}
+.service-box i {
+    color: #008080;
+    margin-bottom: 10px;
+}
+.service-box h4 {
+    margin: 10px 0 5px;
+    color: #333;
+}
+.service-box p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+        /* Reviews */
+        .reviews {
+            max-width: 900px;
+            margin: 40px auto 60px;
+        }
+        .review-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .review-card p {
+            font-style: italic;
+            color: #555;
+        }
+        .review-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .review-card {
+    padding: 15px;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    position: relative;
+}
+
+.review-card button.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s ease;
+}
+
+.review-card button.delete-btn:hover {
+    background: #e60000;
+}
+/* Increase textarea size */
+#review-text {
+    height: 120px;
+    resize: vertical;
+    width:520px;
+}
+
+/* Star rating styling */
+#star-rating {
+    display: flex;
+    gap: 8px;
+    font-size: 24px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.star {
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+.star.selected,
+.star:hover,
+.star:hover ~ .star {
+    color: gold;
+}
+
+/* Responsive styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.hamburger span {
+    height: 3px;
+    width: 25px;
+    background: #333;
+    border-radius: 2px;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+    nav {
+        position: relative;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: white;
+        border-top: 1px solid #ddd;
+        padding: 10px 0;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-buttons {
+        display: none;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header with your existing navbar (Make sure to update the nav links as shared before) -->
+    <header>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <h1>Travelo</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="destination.html" class="nav-item">Destinations</a></li>
+                <li><a href="hotels.html" class="nav-item">Hotels</a></li>
+                <li><a href="blog.html" class="nav-item">Blog</a></li>
+                <li><a href="partnership.html" class="nav-item">Partnership</a></li>
+                <li><a href="contact.html" class="nav-item">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="#" class="login-btn">Login</a>
+                <a href="#" class="signup-btn">Sign Up</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </div>
+</header>
+    <!-- Hero Section -->
+    <section class="hotels-hero">
+        <h2>Explore Our Hotels</h2>
+    </section>
+
+    <!-- Featured Hotels -->
+    <section class="section">
+        <h3>Featured Hotels</h3>
+        <div class="hotels-grid">
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Luxury Hotel" class="hotel-img" />
+                <div class="hotel-info">
+                    <h4>Grand Royal Hotel</h4>
+                    <p>Located in the heart of the city with stunning views and premium amenities.</p>
+                    <p class="price">Starting from $150/night</p>
+                </div>
+            </div>
+            <div class="hotel-card">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="City Boutique Hotel" class="hotel-img" />
+    <div class="hotel-info">
+        <h4>City Boutique Hotel</h4>
+        <p>A chic and modern hotel located in the bustling city center, perfect for business and leisure travelers.</p>
+        <p class="price">Starting from $130/night</p>
+    </div>
+</div>
+
+<div class="hotel-card">
+    <img src="images/hotel1.jpg" alt="Countryside Inn" class="hotel-img" />
+    <div class="hotel-info">
+        <h4>Countryside Inn</h4>
+        <p>Experience peaceful country living with cozy rooms and farm-to-table dining options.</p>
+        <p class="price">Starting from $90/night</p>
+    </div>
+</div>
+
+<div class="hotel-card">
+    <img src="images/hotel2.jpg" alt="Luxury Suite Hotel" class="hotel-img" />
+    <div class="hotel-info">
+        <h4>Luxury Suite Hotel</h4>
+        <p>Elegant suites with premium facilities, spa access, and gourmet dining for an unforgettable stay.</p>
+        <p class="price">Starting from $280/night</p>
+    </div>
+</div>
+
+<div class="hotel-card">
+    <img src="images/hotel3.jpg" alt="Eco Green Hotel" class="hotel-img" />
+    <div class="hotel-info">
+        <h4>Eco Green Hotel</h4>
+        <p>Environmentally friendly accommodations with sustainable practices and green spaces.</p>
+        <p class="price">Starting from $110/night</p>
+    </div>
+</div>
+
+            <div class="hotel-card">
+                <img src="images/hotel.jpg" alt="Beach Resort" class="hotel-img" />
+                <div class="hotel-info">
+                    <h4>Ocean View Resort</h4>
+                    <p>Relax by the sea with exclusive beach access and spa facilities.</p>
+                    <p class="price">Starting from $200/night</p>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80" alt="Mountain Lodge" class="hotel-img" />
+                <div class="hotel-info">
+                    <h4>Mountain Lodge</h4>
+                    <p>A perfect getaway in the mountains with hiking trails and cozy fireplaces.</p>
+                    <p class="price">Starting from $120/night</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Hotel Services -->
+<section class="section">
+    <h3>Our Hotel Services</h3>
+    <div class="services-grid">
+        <div class="service-box">
+            <i class="fas fa-swimming-pool fa-3x"></i>
+            <h4>Swimming Pool</h4>
+            <p>Relax and enjoy our luxurious poolside experience.</p>
+        </div>
+        <div class="service-box">
+            <i class="fas fa-utensils fa-3x"></i>
+            <h4>Restaurant</h4>
+            <p>Enjoy gourmet meals at our in-house dining facilities.</p>
+        </div>
+        <div class="service-box">
+            <i class="fas fa-spa fa-3x"></i>
+            <h4>Spa & Wellness</h4>
+            <p>Pamper yourself with our exclusive spa treatments.</p>
+        </div>
+        <div class="service-box">
+            <i class="fas fa-wifi fa-3x"></i>
+            <h4>Free Wi-Fi</h4>
+            <p>Stay connected with high-speed internet across the hotel.</p>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Booking Form -->
+    <section class="booking-form">
+        <h3>Book Your Stay</h3>
+        <form id="booking-form">
+            <label for="checkin">Check-in Date</label>
+            <input type="date" id="checkin" name="checkin" required />
+
+            <label for="checkout">Check-out Date</label>
+            <input type="date" id="checkout" name="checkout" required />
+
+            <label for="guests">Guests</label>
+            <select id="guests" name="guests" required>
+                <option value="1">1 Guest</option>
+                <option value="2" selected>2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5+ Guests</option>
+            </select>
+
+            <button type="submit">Send Booking Request</button>
+        </form>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="reviews">
+        <h3>What Our Guests Say</h3>
+        <div class="review-card">
+            <p>"Had an amazing experience at the Grand Royal Hotel. The staff were friendly and the rooms were spotless!"</p>
+            <h5>- Sarah L.</h5>
+        </div>
+        <div class="review-card">
+            <p>"Ocean View Resort was the perfect relaxing vacation spot. Loved the private beach access and spa."</p>
+            <h5>- John M.</h5>
+        </div>
+        <div class="review-card">
+            <p>"Mountain Lodge gave us a cozy and adventurous stay. The hiking trails were fantastic."</p>
+            <h5>- Emily R.</h5>
+        </div>
+
+<!-- Submit a Review -->
+<!-- Review Form -->
+<!-- Review Form -->
+<div class="booking-form reviews">
+    <h3>Share Your Review</h3>
+    <form id="review-form">
+        <label for="reviewer-name">Your Name</label>
+        <input type="text" id="reviewer-name" placeholder="Enter your name" required>
+
+        <label for="review-text">Your Review</label>
+        <textarea id="review-text" rows="5" placeholder="Write your experience..." required></textarea>
+
+        <label for="review-rating">Rating</label>
+        <div id="star-rating">
+            <span class="star" data-value="1">&#9734;</span>
+            <span class="star" data-value="2">&#9734;</span>
+            <span class="star" data-value="3">&#9734;</span>
+            <span class="star" data-value="4">&#9734;</span>
+            <span class="star" data-value="5">&#9734;</span>
+        </div>
+
+        <input type="hidden" id="rating-value" value="0">
+        <button type="submit">Post Review</button>
+    </form>
+</div>
+
+
+<!-- Reviews Display -->
+<div class="reviews" id="reviews-section">
+    <!-- Reviews will appear here -->
+</div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-widget">
+                    <div class="logo">
+                        <h2>Travelo</h2>
+                    </div>
+                    <p>Book your trip in minutes, get full control for much longer.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-widget">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3>Destinations</h3>
+                    <ul>
+                        <li><a href="#">Europe</a></li>
+                        <li><a href="#">Asia</a></li>
+                        <li><a href="#">Africa</a></li>
+                        <li><a href="#">America</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Travelo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+    const currentPage = window.location.pathname.split("/").pop();
+    document.querySelectorAll(".nav-item").forEach(link => {
+        const href = link.getAttribute("href");
+        if (href === currentPage) {
+        link.classList.add("active");
+        }
+    });
+    </script>
+     <script>
+document.getElementById('reviewForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const text = document.getElementById('reviewText').value.trim();
+    const name = document.getElementById('guestName').value.trim();
+
+    if (text && name) {
+        const reviewCard = document.createElement('div');
+        reviewCard.className = 'review-card';
+        reviewCard.innerHTML = `
+            <p>"${text}"</p>
+            <h5>- ${name}</h5>
+            <button class="delete-btn">Delete</button>
+        `;
+
+        // Add delete event
+        reviewCard.querySelector('.delete-btn').addEventListener('click', () => {
+            reviewCard.remove();
+        });
+
+        document.getElementById('newReviews').prepend(reviewCard);
+        this.reset();
+    }
+});
+</script>
+<script>
+    const form = document.getElementById('review-form');
+    const reviewsSection = document.getElementById('reviews-section');
+    const stars = document.querySelectorAll('.star');
+    const ratingValue = document.getElementById('rating-value');
+
+    // Star selection
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const value = star.getAttribute('data-value');
+            ratingValue.value = value;
+
+            stars.forEach(s => s.classList.remove('selected'));
+            for (let i = 0; i < value; i++) {
+                stars[i].classList.add('selected');
+            }
+        });
+    });
+
+    // Review submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const reviewerName = document.getElementById('reviewer-name').value.trim();
+        const reviewText = document.getElementById('review-text').value.trim();
+        const rating = ratingValue.value;
+
+        if (reviewText !== "" && reviewerName !== "") {
+            const reviewCard = document.createElement('div');
+            reviewCard.classList.add('review-card');
+
+            let starsHTML = "";
+            for (let i = 0; i < 5; i++) {
+                starsHTML += i < rating ? '<span style="color:gold;">&#9733;</span>' : '<span style="color:#ccc;">&#9733;</span>';
+            }
+
+            reviewCard.innerHTML = `
+                <div>${starsHTML}</div>
+                <p>"${reviewText}"</p>
+                <h5>- ${reviewerName}</h5>
+                <button class="delete-review">Delete</button>
+            `;
+            reviewsSection.prepend(reviewCard);
+            form.reset();
+            stars.forEach(s => s.classList.remove('selected'));
+            ratingValue.value = 0;
+        }
+    });
+
+    // Delete review
+    reviewsSection.addEventListener('click', function(e) {
+        if (e.target.classList.contains('delete-review')) {
+            e.target.parentElement.remove();
+        }
+    });
+    </script>
+        <script>
+    const bookingForm = document.getElementById("booking-form");
+    if (bookingForm) {
+        bookingForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(bookingForm);
+
+        try {
+            const response = await fetch("http://127.0.0.1:5000/api/book", {
+            method: "POST",
+            body: formData
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+            alert("✅ Booking submitted!");
+            bookingForm.reset();
+            } else {
+            alert(result.message || "❌ Booking failed.");
+            }
+        } catch (err) {
+            console.error("Booking error:", err);
+            alert("⚠️ Something went wrong.");
+        }
+        });
+    } else {
+        console.warn("⚠️ booking-form not found on page.");
+    }
+    </script>
+    <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+</script>
+
+
+</body>
+</html>

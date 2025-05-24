@@ -1,0 +1,275 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Add to your CSS file -->
+    <style>
+        body {
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+        }
+
+        .contact-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 60px 80px;
+        background: #f9f9f9;
+        }
+
+        .contact-info, .contact-form {
+        flex: 1 1 45%;
+        margin: 20px 0;
+        }
+
+        .contact-info h2,
+        .contact-form h2 {
+        margin-bottom: 20px;
+        color: #333;
+        }
+
+        .contact-info p {
+        margin: 10px 0;
+        }
+
+        .contact-form form {
+        display: flex;
+        flex-direction: column;
+        }
+
+        .contact-form input, .contact-form textarea {
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+        }
+
+        .contact-form button {
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        }
+
+        .contact-form button:hover {
+        background-color: #0056b3;
+        }
+
+        iframe {
+        width: 100%;
+        height: 300px;
+        border: none;
+        margin-top: 40px;
+        }
+
+        @media screen and (max-width: 768px) {
+        .contact-container {
+            padding: 30px;
+            flex-direction: column;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1 1 100%;
+        }
+        }
+        * Responsive styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.hamburger span {
+    height: 3px;
+    width: 25px;
+    background: #333;
+    border-radius: 2px;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+    nav {
+        position: relative;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: white;
+        border-top: 1px solid #ddd;
+        padding: 10px 0;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-buttons {
+        display: none;
+    }
+}
+
+    </style>
+    </head>
+    <body>
+
+        <!-- Header Section -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <h1>Travelo</h1>
+                </div>
+                <ul class="nav-menu">
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="destination.html" class="nav-item">Destinations</a></li>
+                <li><a href="hotels.html" class="nav-item">Hotels</a></li>
+                <li><a href="blog.html" class="nav-item">Blog</a></li>
+                <li><a href="partnership.html" class="nav-item">Partnership</a></li>
+                <li><a href="contact.html" class="nav-item">Contact</a></li>
+            </ul>
+                <div class="nav-buttons">
+                    <a href="login.html" class="signup-btn">Login</a>
+                    <a href="signin.html" class="signup-btn">Sign Up</a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contact-container">
+        <!-- Contact Information -->
+        <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p><strong>Address:</strong> 123 Palm Street, Jaipur, India</p>
+        <p><strong>Phone:</strong> +91 98765 43210</p>
+        <p><strong>Email:</strong> contact@luxuryhotel.com</p>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+        <h2>Send Us a Message</h2>
+        <form id="contact-form" method="POST" action="http://127.0.0.1:5000/api/contact">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea rows="5" name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Submit</button>
+        </form>
+
+        </div>
+    </section>
+
+    <!-- Optional: Embedded Map -->
+        <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.799933878893!2d75.78727041476891!3d26.912433983133898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db5d07d0f28ff%3A0x44d0195a1b6d70ab!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1650000000000" 
+    width="100%" 
+    height="300" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+<footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-widget">
+                    <div class="logo">
+                        <h2>Travelo</h2>
+                    </div>
+                    <p>Book your trip in minutes, get full control for much longer.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-widget">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3>Destinations</h3>
+                    <ul>
+                        <li><a href="#">Europe</a></li>
+                        <li><a href="#">Asia</a></li>
+                        <li><a href="#">Africa</a></li>
+                        <li><a href="#">America</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Travelo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+  document.getElementById("contact-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/api/contact", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert("✅ Message sent successfully!");
+        form.reset(); // Clear the form
+      } else {
+        alert("❌ Failed to send message. Try again.");
+      }
+    } catch (err) {
+      alert("⚠️ Something went wrong. Try again.");
+      console.error(err);
+    }
+  });
+</script>
+    <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+</script>
+
+    </body>
+    </html>

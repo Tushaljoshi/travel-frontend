@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelo - Travel Agency</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <h1>Travelo</h1>
+                </div>
+                <ul class="nav-menu">
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="destination.html" class="nav-item">Destinations</a></li>
+                <li><a href="hotels.html" class="nav-item">Hotels</a></li>
+                <li><a href="blog.html" class="nav-item">Blog</a></li>
+                <li><a href="partnership.html" class="nav-item">Partnership</a></li>
+                <li><a href="contact.html" class="nav-item">Contact</a></li>
+            </ul>
+                <div class="nav-buttons">
+                    <a href="login.html" class="signup-btn">Login</a>
+                    <a href="signin.html" class="signup-btn">Sign Up</a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <section class="partnership-section">
+        <div class="container">
+            <h1>Partner with Travelo</h1>
+            <p>We are excited to collaborate with like-minded businesses to create unforgettable travel experiences.</p>
+
+            <div class="partnership-content">
+                <div class="partner-benefits">
+                    <h2>Why Partner with Us?</h2>
+                    <ul>
+                        <li>Expand your business reach</li>
+                        <li>Access a large customer base</li>
+                        <li>Get featured on our platform</li>
+                        <li>Marketing and branding support</li>
+                    </ul>
+                </div>
+                <div class="partner-form">
+                    <h2>Interested in Partnering?</h2>
+                    <form id="partner-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Business Email" required>
+                    <input type="text" name="company" placeholder="Company Name" required>
+                    <textarea name="message" placeholder="Tell us about your business..." required></textarea>
+                    <button type="submit">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-widget">
+                    <div class="logo">
+                        <h2>Travelo</h2>
+                    </div>
+                    <p>Book your trip in minutes, get full control for much longer.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-widget">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3>Destinations</h3>
+                    <ul>
+                        <li><a href="#">Europe</a></li>
+                        <li><a href="#">Asia</a></li>
+                        <li><a href="#">Africa</a></li>
+                        <li><a href="#">America</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Travelo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Nav active class
+            const currentPage = window.location.pathname.split("/").pop();
+            document.querySelectorAll(".nav-item").forEach(link => {
+                const href = link.getAttribute("href");
+                if (href === currentPage) {
+                    link.classList.add("active");
+                }
+            });
+
+            // Partner form submit
+            const partnerForm = document.getElementById("partner-form");
+            if (partnerForm) {
+                partnerForm.addEventListener("submit", async function (e) {
+                    e.preventDefault();
+
+                    const form = e.target;
+                    const formData = new FormData(form);
+
+                    try {
+                        const response = await fetch("http://127.0.0.1:5000/api/partner", {
+                            method: "POST",
+                            body: formData,
+                        });
+
+                        if (response.ok) {
+                            alert("🎉 Partnership request sent successfully!");
+                            form.reset();
+                        } else {
+                            alert("❌ Failed to send. Try again.");
+                        }
+                    } catch (err) {
+                        console.error(err);
+                        alert("⚠️ Something went wrong.");
+                    }
+                });
+            } else {
+                console.error("partner-form element not found");
+            }
+        });
+    </script>
+
+    <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+</script>
+
+</body>
+
+</html>
